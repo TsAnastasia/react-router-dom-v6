@@ -5,6 +5,7 @@ import Contactspage from "../../pages/about/contacts/Contactspage";
 import Teampage from "../../pages/about/team/Teampage";
 import Blogpage from "../../pages/blog/Blogpage";
 import Homepage from "../../pages/home/Homepage";
+import { LoginPage } from "../../pages/login/Loginpage";
 import Notfoundpage from "../../pages/notfound/NotfoundPage";
 import { AppRoutes } from "../../utils/routes";
 
@@ -19,6 +20,7 @@ const routes: RouteObject[] = [
       { path: AppRoutes.ABOUT_TEAM, element: <Teampage /> },
     ],
   },
+  { path: AppRoutes.LOGIN, element: <LoginPage /> },
   { path: "*", element: <Notfoundpage /> },
 ];
 

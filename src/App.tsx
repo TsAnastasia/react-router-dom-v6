@@ -1,11 +1,16 @@
 import React from "react";
+import AppFooter from "./components/AppFooter/AppFooter";
+import AppHeader from "./components/AppHeader/AppHeader";
+import AppRouter from "./components/AppRouter/AppRouter";
 
-const App = () => {
-  return (
-    <main>
-      <h1>Hello world!!!</h1>
-    </main>
-  );
-};
+const App = () => (
+  <div className="app">
+    <AppHeader />
+
+    <AppRouter />
+
+    <AppFooter />
+  </div>
+);
 
 export default App;

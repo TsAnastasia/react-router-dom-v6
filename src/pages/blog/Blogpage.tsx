@@ -26,7 +26,7 @@ const Blogpage = () => {
       <section>
         <h1>Our news</h1>
 
-        <Link to="/posts/new">Add new post</Link>
+        <Link to={pathToPage.postAdd}>Add new post</Link>
       </section>
       <section>
         <h2>Posts</h2>

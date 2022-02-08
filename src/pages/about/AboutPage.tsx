@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet /* , Route, Routes */ } from "react-router-dom";
 import { pathToPage } from "../../utils/routes";
 
 const Aboutpage = () => (
@@ -16,7 +16,12 @@ const Aboutpage = () => (
         </li>
       </ul>
     </section>
-    
+
+    {/* <Routes>
+      <Route path="contacts" element={<p>Our contact</p>} />
+      <Route path="team" element={<p>Our team</p>} />
+    </Routes> */}
+
     <Outlet />
   </main>
 );

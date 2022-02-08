@@ -1,5 +1,5 @@
 import React from "react";
-import { RouteObject, useRoutes } from "react-router-dom";
+import { Navigate, RouteObject, useRoutes } from "react-router-dom";
 import Aboutpage from "../../pages/about/AboutPage";
 import Contactspage from "../../pages/about/contacts/Contactspage";
 import Teampage from "../../pages/about/team/Teampage";
@@ -10,7 +10,7 @@ import Postpage from "../../pages/post/Postpage";
 import Homepage from "../../pages/home/Homepage";
 import { LoginPage } from "../../pages/login/Loginpage";
 import Notfoundpage from "../../pages/notfound/NotfoundPage";
-import { AppRoutes } from "../../utils/routes";
+import { AppRoutes, pathToPage } from "../../utils/routes";
 import RequireAuth from "../hoc/RequireAuth";
 
 const routes: RouteObject[] = [
@@ -22,6 +22,10 @@ const routes: RouteObject[] = [
       {
         path: AppRoutes.BLOG_ADD,
         element: <RequireAuth children={<CreatePostpage />} />,
+      },
+      {
+        path: "add",
+        element: <Navigate to={pathToPage.postAdd} replace />,
       },
       {
         path: AppRoutes.BLOG_POST,

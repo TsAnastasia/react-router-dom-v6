@@ -4,14 +4,37 @@ import Aboutpage from "../../pages/about/AboutPage";
 import Contactspage from "../../pages/about/contacts/Contactspage";
 import Teampage from "../../pages/about/team/Teampage";
 import Blogpage from "../../pages/blog/Blogpage";
+import CreatePostpage from "../../pages/blog/createPost/CreatePostpage";
+import EditPostpage from "../../pages/blog/edit/EditPostpage";
+import Postpage from "../../pages/blog/post/Postpage";
 import Homepage from "../../pages/home/Homepage";
 import { LoginPage } from "../../pages/login/Loginpage";
 import Notfoundpage from "../../pages/notfound/NotfoundPage";
 import { AppRoutes } from "../../utils/routes";
+import RequireAuth from "../hoc/RequireAuth";
 
 const routes: RouteObject[] = [
   { path: AppRoutes.HOME, element: <Homepage /> },
-  { path: AppRoutes.BLOG, element: <Blogpage /> },
+  {
+    path: AppRoutes.BLOG,
+    children: [
+      { index: true, element: <Blogpage /> },
+      {
+        path: AppRoutes.BLOG_ADD,
+        element: <RequireAuth children={<CreatePostpage />} />,
+      },
+      {
+        path: AppRoutes.BLOG_POST,
+        children: [
+          { index: true, element: <Postpage /> },
+          {
+            path: AppRoutes.BLOG_POST_EDIT,
+            element: <RequireAuth children={<EditPostpage />} />,
+          },
+        ],
+      },
+    ],
+  },
   {
     path: AppRoutes.ABOUT,
     element: <Aboutpage />,

@@ -22,11 +22,6 @@ body {
   --color-active: #0f7dc6;
 }
 
-main {
-  padding: 0 2em;
-  flex: 1;
-}
-
 header {
   padding: 2rem 0;
   background-color: var(--color-bg);
@@ -49,7 +44,7 @@ header > a:hover {
 }
 
 h1 {
-  margin: 0.4em auto;
+  margin: 0 auto 0.4em;
   text-align: center;
 }
 
@@ -61,7 +56,8 @@ h1 {
 }
 
 main {
-  padding: 0 2em;
+  padding: 2em;
+  flex: 1;
 }
 
 main a {

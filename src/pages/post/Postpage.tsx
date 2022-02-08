@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { postAPI } from "../../../api/post/postAPI";
-import { pathToPage } from "../../../utils/routes";
-import { IPost } from "../../../utils/types";
+import { postAPI } from "../../api/post/postAPI";
+import { pathToPage } from "../../utils/routes";
+import { IPost } from "../../utils/types";
 
 const Postpage = () => {
   const id = +useParams().postId!! || null;

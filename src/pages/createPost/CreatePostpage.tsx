@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../../hooks/useAuth";
-import { AppRoutes } from "../../../utils/routes";
+import { useAuth } from "../../hooks/useAuth";
+import { AppRoutes } from "../../utils/routes";
 
 const CreatePostpage = () => {
   const { signout } = useAuth();

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { Link, Outlet /* , Route, Routes */ } from "react-router-dom";
 import { pathToPage } from "../../utils/routes";
 
@@ -21,8 +21,9 @@ const Aboutpage = () => (
       <Route path="contacts" element={<p>Our contact</p>} />
       <Route path="team" element={<p>Our team</p>} />
     </Routes> */}
-
-    <Outlet />
+    <Suspense fallback={<div>Loading...</div>}>
+      <Outlet />
+    </Suspense>
   </main>
 );
 

@@ -1,17 +1,22 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { Navigate, RouteObject, useRoutes } from "react-router-dom";
-import Aboutpage from "../../pages/about/AboutPage";
-import Contactspage from "../../pages/about/contacts/Contactspage";
-import Teampage from "../../pages/about/team/Teampage";
-import Blogpage from "../../pages/blog/Blogpage";
-import CreatePostpage from "../../pages/createPost/CreatePostpage";
-import EditPostpage from "../../pages/editPost/EditPostpage";
-import Postpage from "../../pages/post/Postpage";
-import Homepage from "../../pages/home/Homepage";
 import { LoginPage } from "../../pages/login/Loginpage";
-import Notfoundpage from "../../pages/notfound/NotfoundPage";
 import { AppRoutes, pathToPage } from "../../utils/routes";
 import RequireAuth from "../hoc/RequireAuth";
+
+const Aboutpage = lazy(() => import("../../pages/about/AboutPage"));
+const Blogpage = lazy(() => import("../../pages/blog/Blogpage"));
+const Contactspage = lazy(
+  () => import("../../pages/about/contacts/Contactspage")
+);
+const CreatePostpage = lazy(
+  () => import("../../pages/createPost/CreatePostpage")
+);
+const EditPostpage = lazy(() => import("../../pages/editPost/EditPostpage"));
+const Homepage = lazy(() => import("../../pages/home/Homepage"));
+const Notfoundpage = lazy(() => import("../../pages/notfound/NotfoundPage"));
+const Postpage = lazy(() => import("../../pages/post/Postpage"));
+const Teampage = lazy(() => import("../../pages/about/team/Teampage"));
 
 const routes: RouteObject[] = [
   { path: AppRoutes.HOME, element: <Homepage /> },
@@ -51,6 +56,8 @@ const routes: RouteObject[] = [
   { path: "*", element: <Notfoundpage /> },
 ];
 
-const AppRouter = () => useRoutes(routes);
+const AppRouter = () => (
+  <Suspense fallback={<main>Loading...</main>}> {useRoutes(routes)}</Suspense>
+);
 
 export default AppRouter;

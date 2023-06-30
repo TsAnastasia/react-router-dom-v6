@@ -7,6 +7,7 @@ const AppHeader = () => (
     <NavLink to={pathToPage.home}>Home</NavLink>
     <NavLink to={pathToPage.blog}>Blog</NavLink>
     <NavLink to={pathToPage.about}>About</NavLink>
+    <NavLink to={"data_manager"}>Data Manager</NavLink>
   </header>
 );
 

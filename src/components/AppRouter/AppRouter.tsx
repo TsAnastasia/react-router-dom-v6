@@ -18,6 +18,8 @@ const Notfoundpage = lazy(() => import("../../pages/notfound/NotfoundPage"));
 const Postpage = lazy(() => import("../../pages/post/Postpage"));
 const Teampage = lazy(() => import("../../pages/about/team/Teampage"));
 
+const DataManager = lazy(() => import("../../pages/data_manager/DataManager"));
+
 const routes: RouteObject[] = [
   { path: AppRoutes.HOME, element: <Homepage /> },
   {
@@ -51,6 +53,10 @@ const routes: RouteObject[] = [
       { path: AppRoutes.ABOUT_CONTACTS, element: <Contactspage /> },
       { path: AppRoutes.ABOUT_TEAM, element: <Teampage /> },
     ],
+  },
+  {
+    path: "data_manager/*",
+    element: <DataManager />,
   },
   { path: AppRoutes.LOGIN, element: <LoginPage /> },
   { path: "*", element: <Notfoundpage /> },

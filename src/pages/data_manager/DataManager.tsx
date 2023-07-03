@@ -11,27 +11,21 @@ import {
 
 // const ListDataManager = lazy(() => import("./components/list/ListDataManager"));
 
-// const MainSeism = lazy(() => import("./pages/seism/main/MainSeism"));
 const SingleSeism = lazy(() => import("./pages/seism/single/SingleSeism"));
+const SingleMap = lazy(() => import("./pages/map/single/SingleMap"));
+const SingleHorison = lazy(
+  () => import("./pages/horison/single/SingleHorison")
+);
 
-// const MainMap = lazy(() => import("./pages/map/main/MainMap"));
-// const SingleMap = lazy(() => import("./pages/map/single/SingleMap"));
-
-// const MainHorison = lazy(() => import("./pages/horison/main/MainHorison"));
-// const SingleHorison = lazy(
-//   () => import("./pages/horison/single/SingleHorison")
-// );
-
-// const MainGrid = lazy(() => import("./pages/grid/main/MainGrid"));
 const SingleGrid = lazy(() => import("./pages/grid/single/SingleGrid"));
 
 const SINGLE_PAGES: Record<SectionsNamesType, ReactNode> = {
   seism: <SingleSeism />,
   well: undefined,
   library: undefined,
-  horison: undefined,
+  horison: <SingleHorison />,
   grid: <SingleGrid />,
-  map: undefined,
+  map: <SingleMap />,
   polygon: undefined,
   pulses: undefined,
   "cross-raft": undefined,

@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
 import NavDataManager from "../../../components/nav/NavDataManager";
-import { GRID_ROOTES_ITEMS } from "../../../routes";
+import { GRID_ROOTES_ITEMS } from "../../../router/routes";
 
 const SingleGrid = () => {
   return (

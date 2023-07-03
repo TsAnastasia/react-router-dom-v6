@@ -1,4 +1,4 @@
-export const RootRouters = {
+export const SectionsNames = {
   SEISM: "seism",
   WELL: "well",
   LIBRARY: "library",
@@ -7,30 +7,43 @@ export const RootRouters = {
   MAP: "map",
   POLYGON: "polygon",
   PULSES: "pulses",
-  CROSS_RAFTS: "cross-rafts",
+  CROSS_RAFTS: "cross-raft",
   CONTOUR: "contour",
+} as const;
+
+export const RootRouters = {
+  SEISM: SectionsNames.SEISM,
+  WELL: SectionsNames.WELL,
+  LIBRARY: SectionsNames.LIBRARY,
+  HORISON: SectionsNames.HORISON,
+  GRID: SectionsNames.GRID,
+  MAP: SectionsNames.MAP,
+  POLYGON: SectionsNames.POLYGON,
+  PULSES: SectionsNames.PULSES,
+  CROSS_RAFTS: SectionsNames.CROSS_RAFTS,
+  CONTOUR: SectionsNames.CONTOUR,
 } as const;
 
 export const MapRoutes = {
   MAP: "",
-  GRID: RootRouters.GRID,
-  SEISM: RootRouters.SEISM,
-  WELL: RootRouters.WELL,
-  CONTOUR: RootRouters.CONTOUR,
-  POLYGON: RootRouters.POLYGON,
+  GRID: SectionsNames.GRID,
+  SEISM: SectionsNames.SEISM,
+  WELL: SectionsNames.WELL,
+  CONTOUR: SectionsNames.CONTOUR,
+  POLYGON: SectionsNames.POLYGON,
   POINT: "point",
 } as const;
 
 export const GridRoutes = {
-  MAP: RootRouters.MAP,
-  SEISM: RootRouters.SEISM,
-  HORISON: RootRouters.HORISON,
+  MAP: SectionsNames.MAP,
+  SEISM: SectionsNames.SEISM,
+  HORISON: SectionsNames.HORISON,
 } as const;
 
 export const HorisonRoutes = {
   HORISON: "",
-  GRID: RootRouters.GRID,
-  SEISM: RootRouters.SEISM,
+  GRID: SectionsNames.GRID,
+  SEISM: SectionsNames.SEISM,
 } as const;
 
 type ObjectValues<T extends object> = T[keyof T];
@@ -40,9 +53,12 @@ export interface ILinkItem {
   name: string;
 }
 
+export type SectionsNamesType = ObjectValues<typeof SectionsNames>;
+
 export const NAMES_ROUTES: Omit<
   Record<
     | ObjectValues<typeof RootRouters>
+    | ObjectValues<typeof SectionsNames>
     | ObjectValues<typeof MapRoutes>
     | ObjectValues<typeof GridRoutes>
     | ObjectValues<typeof HorisonRoutes>,
@@ -58,7 +74,7 @@ export const NAMES_ROUTES: Omit<
   map: "Карты",
   polygon: "Полигоны",
   pulses: "Импульсы",
-  "cross-rafts": "Кросс - плоты",
+  "cross-raft": "Кросс - плоты",
   contour: "Контура",
   point: "Точки",
 };

@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { NavLink } from "react-router-dom";
-import { ILinkItem } from "../../routes";
+import { ILinkItem } from "../../router/routes";
 
 const NavDataManager: FC<{
   items: ILinkItem[];

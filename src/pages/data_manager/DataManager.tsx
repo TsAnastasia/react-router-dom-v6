@@ -14,6 +14,7 @@ import SingleHorisonRouter from "./router/horison/HorisonSingleRouter";
 import GridSingleRouter from "./router/grid/GridSingleRouter";
 import LibrarySingleRouter from "./router/library/LibrarySingleRouter";
 import WellSingleRouter from "./router/well/WellSingleRouter";
+import HeaderDataManager from "./components/header/HeaderDataManager";
 
 // const SingleHorison = lazy(
 //   () => import("./pages/horison/single/SingleHorison")
@@ -60,13 +61,18 @@ const DataManager = () => {
   }, [pathname, MFPath]);
 
   return (
-    <main style={{ display: "flex" }}>
-      <NavDataManager
-        items={ROOT_ROOTES_ITEMS}
-        end={false}
-        direction="column"
-      />
-      <Suspense fallback={null}>{component || <DMRouter />}</Suspense>
+    <main style={{ display: "flex", border: "1px solid", padding: 0 }}>
+      <div style={{ borderRight: "1px solid", padding: 8 }}>
+        <NavDataManager
+          items={ROOT_ROOTES_ITEMS}
+          end={false}
+          direction="column"
+        />
+      </div>
+      <div style={{ flex: 1 }}>
+        <HeaderDataManager />
+        <Suspense fallback={null}>{component || <DMRouter />}</Suspense>
+      </div>
     </main>
   );
 };

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 import { Link } from "react-router-dom";
 
 const ITEMS: { id: string; name: string }[] = [...Array(10)].map((_, id) => ({
@@ -18,4 +18,4 @@ const ListDataManager: FC<{ itemsType: string }> = ({ itemsType }) => {
   );
 };
 
-export default ListDataManager;
+export default memo(ListDataManager);

@@ -1,5 +1,4 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import MainWell from "../../pages/well/main/MainWell";
 import ListMainWell from "../../pages/well/main/list/ListMainWell";
 import { WellMainRoutes } from "./routes";
 

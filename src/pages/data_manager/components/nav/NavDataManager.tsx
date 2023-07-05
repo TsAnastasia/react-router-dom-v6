@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 import { NavLink } from "react-router-dom";
 import { ILinkItem } from "../../router/routes";
 
@@ -8,7 +8,17 @@ const NavDataManager: FC<{
   direction?: "column" | "row";
 }> = ({ items, end = true, direction = "row" }) => {
   return (
-    <ul style={{ display: "flex", flexDirection: direction, gap: 12 }}>
+    <ul
+      style={{
+        margin: 0,
+        padding: 12,
+        borderBottom: direction === "row" ? "1px solid" : "",
+        display: "flex",
+        justifyContent: "center",
+        flexDirection: direction,
+        gap: 12,
+      }}
+    >
       {items.map((item) => (
         <NavLink key={item.to} to={item.to} end={end}>
           {item.name}
@@ -18,4 +28,4 @@ const NavDataManager: FC<{
   );
 };
 
-export default NavDataManager;
+export default memo(NavDataManager);

@@ -18,7 +18,7 @@ const DMRouter = () => {
 
       <Route path={RootRouters.HORISON} element={<MainHorison />} />
 
-      <Route path="*" element={<p>not found</p>} />
+      {/* <Route path="*" element={<p>not found</p>} /> */}
       <Route path="*" element={<Navigate to={RootRouters.SEISM} />} />
     </Routes>
   );

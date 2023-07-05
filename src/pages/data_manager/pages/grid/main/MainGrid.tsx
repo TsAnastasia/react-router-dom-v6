@@ -3,7 +3,7 @@ import ListDataManager from "../../../components/list/ListDataManager";
 const MainGrid = () => {
   return (
     <div>
-      <ListDataManager />
+      <ListDataManager itemsType="grid" />
     </div>
   );
 };

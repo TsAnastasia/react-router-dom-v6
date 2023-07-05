@@ -1,3 +1,4 @@
+import { FC } from "react";
 import { NavLink } from "react-router-dom";
 
 const ITEMS: { id: string; name: string }[] = [...Array(10)].map((_, id) => ({
@@ -5,13 +6,13 @@ const ITEMS: { id: string; name: string }[] = [...Array(10)].map((_, id) => ({
   name: "name" + id,
 }));
 
-const ListDataManager = () => {
+const ListDataManager: FC<{ itemsType: string }> = ({ itemsType }) => {
   return (
     <ul>
       {ITEMS.map((item) => (
         <li key={item.id}>
           <NavLink to={item.id} end>
-            {item.name}
+            {`${itemsType} ${item.name}`}
           </NavLink>
         </li>
       ))}

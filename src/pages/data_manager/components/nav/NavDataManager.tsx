@@ -1,23 +1,16 @@
 import { FC } from "react";
-import { NavLink, RelativeRoutingType } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { ILinkItem } from "../../router/routes";
 
 const NavDataManager: FC<{
   items: ILinkItem[];
   end?: boolean;
   direction?: "column" | "row";
-  relative?: RelativeRoutingType;
-}> = ({
-  items,
-  end = true,
-  direction = "row",
-  relative = direction === "row" ? "path" : "route",
-}) => {
-  // TODO: ???
+}> = ({ items, end = true, direction = "row" }) => {
   return (
     <ul style={{ display: "flex", flexDirection: direction, gap: 12 }}>
       {items.map((item) => (
-        <NavLink key={item.to} to={item.to} end={end} relative={relative}>
+        <NavLink key={item.to} to={item.to} end={end}>
           {item.name}
         </NavLink>
       ))}

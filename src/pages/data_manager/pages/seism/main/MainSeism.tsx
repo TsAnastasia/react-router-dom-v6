@@ -5,7 +5,7 @@ const MainSeism = () => {
   return (
     <div>
       <NavDataManager items={[]} />
-      <ListDataManager />
+      <ListDataManager itemsType="seism" />
     </div>
   );
 };

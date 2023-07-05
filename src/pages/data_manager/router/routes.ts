@@ -37,6 +37,7 @@ export interface ILinkItem {
 }
 
 export type SectionsNamesType = ObjectValues<typeof SectionsNames>;
+export type RootRoutesType = ObjectValues<typeof RootRouters>;
 
 export type PageSectionsNamesType<T extends object> = ObjectValues<
   Omit<T, "SINGLE">

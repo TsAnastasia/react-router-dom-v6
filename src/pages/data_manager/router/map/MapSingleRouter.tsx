@@ -1,45 +1,46 @@
 import { FC, lazy, memo } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import { MapRoutes, SectionsNames } from "../routes";
+import { SectionsNames } from "../routes";
+import { MapSingleRoutes } from "./routes";
 
 const SingleMap = lazy(() => import("../../pages/map/single/SingleMap"));
 const ListDataManager = lazy(
   () => import("../../components/list/ListDataManager")
 );
 
-const SingleMapRouter: FC<{ path: string }> = ({ path }) => {
+const MapSingleRouter: FC<{ path: string }> = ({ path }) => {
   return (
     <Routes>
       <Route
-        path={`${path}${SectionsNames.MAP}/:mapId`}
+        path={`${path}${SectionsNames.MAP}/${MapSingleRoutes.SINGLE}`}
         element={<SingleMap />}
       >
         <Route path="*" element={<Navigate to="" />} />
         <Route path="" element={<p>single map</p>} />
         <Route
-          path={MapRoutes.GRID}
+          path={MapSingleRoutes.GRID}
           element={<ListDataManager itemsType="grid" />}
         />
         <Route
-          path={MapRoutes.SEISM}
+          path={MapSingleRoutes.SEISM}
           element={<ListDataManager itemsType="seism" />}
         />
         <Route
-          path={MapRoutes.WELL}
+          path={MapSingleRoutes.WELL}
           element={<ListDataManager itemsType="well" />}
         />
         <Route
-          path={MapRoutes.CONTOUR}
+          path={MapSingleRoutes.CONTOUR}
           element={<ListDataManager itemsType="contour" />}
         />
         <Route
-          path={MapRoutes.POLYGON}
+          path={MapSingleRoutes.POLYGON}
           element={<ListDataManager itemsType="poligon" />}
         />
-        <Route path={MapRoutes.POINT} element={<p>maps points</p>} />
+        <Route path={MapSingleRoutes.POINT} element={<p>maps points</p>} />
       </Route>
     </Routes>
   );
 };
 
-export default memo(SingleMapRouter);
+export default memo(MapSingleRouter);

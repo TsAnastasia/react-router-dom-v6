@@ -3,13 +3,16 @@ import { useLocation, useResolvedPath } from "react-router-dom";
 
 import NavDataManager from "./components/nav/NavDataManager";
 import DMRouter from "./router/DMRouter";
-import SingleMapRouter from "./router/map/SingleMapRouter";
+import MapSingleRouter from "./router/map/MapSingleRouter";
 import {
   ROOT_ROOTES_ITEMS,
   SectionsNames,
   SectionsNamesType,
 } from "./router/routes";
-import SingleSeismRouter from "./router/seism/SingleSeismRouter";
+import SeismSingleRouter from "./router/seism/SeismSingleRouter";
+import SingleHorisonRouter from "./router/horison/HorisonSingleRouter";
+import GridSingleRouter from "./router/grid/GridSingleRouter";
+import LibrarySingleRouter from "./router/library/LibrarySingleRouter";
 
 // const SingleHorison = lazy(
 //   () => import("./pages/horison/single/SingleHorison")
@@ -21,16 +24,16 @@ const SINGLE_PAGES: Record<
   SectionsNamesType,
   ComponentType<{ path: string }>
 > = {
-  seism: SingleSeismRouter,
-  well: (path) => <></>,
-  library: (path) => <></>,
-  horison: (path) => <></>,
-  grid: (path) => <></>,
-  map: SingleMapRouter,
-  polygon: (path) => <></>,
-  pulses: (path) => <></>,
-  "cross-raft": (path) => <></>,
-  contour: (path) => <></>,
+  seism: SeismSingleRouter,
+  well: (path) => <>well</>,
+  library: LibrarySingleRouter,
+  horison: SingleHorisonRouter,
+  grid: GridSingleRouter,
+  map: MapSingleRouter,
+  polygon: (path) => <>polygon</>,
+  pulses: (path) => <>pulses</>,
+  "cross-raft": (path) => <>cross</>,
+  contour: (path) => <>contour</>,
 };
 
 const DataManager = () => {

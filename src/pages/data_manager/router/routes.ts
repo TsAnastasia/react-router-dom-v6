@@ -1,3 +1,7 @@
+import { GridSingleRoutes } from "./grid/routes";
+import { HorisonSingleRoutes } from "./horison/routes";
+import { MapSingleRoutes } from "./map/routes";
+
 export const SectionsNames = {
   SEISM: "seism",
   WELL: "well",
@@ -21,29 +25,6 @@ export const RootRouters = {
   POLYGON: SectionsNames.POLYGON,
   PULSES: SectionsNames.PULSES,
   CROSS_RAFTS: SectionsNames.CROSS_RAFTS,
-  CONTOUR: SectionsNames.CONTOUR,
-} as const;
-
-export const MapRoutes = {
-  MAP: "",
-  GRID: SectionsNames.GRID,
-  SEISM: SectionsNames.SEISM,
-  WELL: SectionsNames.WELL,
-  CONTOUR: SectionsNames.CONTOUR,
-  POLYGON: SectionsNames.POLYGON,
-  POINT: "point",
-} as const;
-
-export const GridRoutes = {
-  MAP: SectionsNames.MAP,
-  SEISM: SectionsNames.SEISM,
-  HORISON: SectionsNames.HORISON,
-} as const;
-
-export const HorisonRoutes = {
-  HORISON: "",
-  GRID: SectionsNames.GRID,
-  SEISM: SectionsNames.SEISM,
 } as const;
 
 type ObjectValues<T extends object> = T[keyof T];
@@ -55,13 +36,17 @@ export interface ILinkItem {
 
 export type SectionsNamesType = ObjectValues<typeof SectionsNames>;
 
+export type PageSectionsNamesType<T extends object> = ObjectValues<
+  Omit<T, "SINGLE">
+>;
+
 export const NAMES_ROUTES: Omit<
   Record<
     | ObjectValues<typeof RootRouters>
     | ObjectValues<typeof SectionsNames>
-    | ObjectValues<typeof MapRoutes>
-    | ObjectValues<typeof GridRoutes>
-    | ObjectValues<typeof HorisonRoutes>,
+    | PageSectionsNamesType<typeof MapSingleRoutes>
+    | PageSectionsNamesType<typeof GridSingleRoutes>
+    | PageSectionsNamesType<typeof HorisonSingleRoutes>,
     string
   >,
   ""
@@ -81,17 +66,4 @@ export const NAMES_ROUTES: Omit<
 
 export const ROOT_ROOTES_ITEMS: ILinkItem[] = Object.values(RootRouters).map(
   (i) => ({ to: i, name: NAMES_ROUTES[i] })
-);
-
-export const MAP_ROOTES_ITEMS: ILinkItem[] = Object.values(MapRoutes).map((i) =>
-  i === "" ? { to: "", name: "Карта" } : { to: i, name: NAMES_ROUTES[i] }
-);
-
-export const GRID_ROOTES_ITEMS: ILinkItem[] = Object.values(GridRoutes).map(
-  (i) => ({ to: i, name: NAMES_ROUTES[i] })
-);
-
-export const HORISON_ROOTES_ITEMS: ILinkItem[] = Object.values(MapRoutes).map(
-  (i) =>
-    i === "" ? { to: "", name: "Гоизонт" } : { to: i, name: NAMES_ROUTES[i] }
 );

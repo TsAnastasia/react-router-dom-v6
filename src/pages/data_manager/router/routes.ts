@@ -1,6 +1,7 @@
 import { GridSingleRoutes } from "./grid/routes";
 import { HorisonSingleRoutes } from "./horison/routes";
 import { MapSingleRoutes } from "./map/routes";
+import { WellMainRoutes, WellSingleRoutes } from "./well/routes";
 
 export const SectionsNames = {
   SEISM: "seism",
@@ -13,11 +14,12 @@ export const SectionsNames = {
   PULSES: "pulses",
   CROSS_RAFTS: "cross-raft",
   CONTOUR: "contour",
+  GIS: "gis",
 } as const;
 
 export const RootRouters = {
   SEISM: SectionsNames.SEISM,
-  WELL: SectionsNames.WELL,
+  WELL: "wells",
   LIBRARY: SectionsNames.LIBRARY,
   HORISON: SectionsNames.HORISON,
   GRID: SectionsNames.GRID,
@@ -46,13 +48,16 @@ export const NAMES_ROUTES: Omit<
     | ObjectValues<typeof SectionsNames>
     | PageSectionsNamesType<typeof MapSingleRoutes>
     | PageSectionsNamesType<typeof GridSingleRoutes>
-    | PageSectionsNamesType<typeof HorisonSingleRoutes>,
+    | PageSectionsNamesType<typeof HorisonSingleRoutes>
+    | PageSectionsNamesType<typeof WellSingleRoutes>
+    | PageSectionsNamesType<typeof WellMainRoutes>,
     string
   >,
   ""
 > = {
   seism: "Сейсмика",
   well: "Скважины",
+  wells: "Скважины",
   library: "Библиотеки",
   horison: "Горизонты",
   grid: "Сетки",
@@ -62,6 +67,13 @@ export const NAMES_ROUTES: Omit<
   "cross-raft": "Кросс - плоты",
   contour: "Контура",
   point: "Точки",
+  gis: "ГИС",
+  inclinometry: "Инклинометрия",
+  chops: "Отбивки",
+  info: "Сводная информация",
+  parameters: "Параметры",
+  markers: "Маркеры",
+  "well-types": "Типы скважин",
 };
 
 export const ROOT_ROOTES_ITEMS: ILinkItem[] = Object.values(RootRouters).map(

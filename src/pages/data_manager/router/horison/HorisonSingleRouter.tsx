@@ -14,7 +14,7 @@ const SingleHorisonRouter: FC<{ path: string }> = ({ path }) => {
   return (
     <Routes>
       <Route
-        path={`${path}${SectionsNames.HORISON}/:horisonId`}
+        path={`${path}${SectionsNames.HORISON}/${HorisonSingleRoutes.SINGLE}`}
         element={<SingleHorison />}
       >
         <Route path="*" element={<Navigate to="" />} />

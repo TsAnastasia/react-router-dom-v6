@@ -13,6 +13,7 @@ import SeismSingleRouter from "./router/seism/SeismSingleRouter";
 import SingleHorisonRouter from "./router/horison/HorisonSingleRouter";
 import GridSingleRouter from "./router/grid/GridSingleRouter";
 import LibrarySingleRouter from "./router/library/LibrarySingleRouter";
+import WellSingleRouter from "./router/well/WellSingleRouter";
 
 // const SingleHorison = lazy(
 //   () => import("./pages/horison/single/SingleHorison")
@@ -25,15 +26,16 @@ const SINGLE_PAGES: Record<
   ComponentType<{ path: string }>
 > = {
   seism: SeismSingleRouter,
-  well: (path) => <>well</>,
+  well: WellSingleRouter,
   library: LibrarySingleRouter,
   horison: SingleHorisonRouter,
   grid: GridSingleRouter,
   map: MapSingleRouter,
-  polygon: (path) => <>polygon</>,
-  pulses: (path) => <>pulses</>,
-  "cross-raft": (path) => <>cross</>,
-  contour: (path) => <>contour</>,
+  polygon: (path) => <>polygon single</>,
+  pulses: (path) => <>pulses single</>,
+  "cross-raft": (path) => <>cross single</>,
+  contour: (path) => <>contour single</>,
+  gis: (path) => <>gis single</>,
 };
 
 const DataManager = () => {

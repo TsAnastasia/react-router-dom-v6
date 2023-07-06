@@ -2,7 +2,7 @@ import { ComponentType, ReactNode, Suspense, useMemo } from "react";
 import { useLocation, useResolvedPath } from "react-router-dom";
 
 import NavDataManager from "./components/nav/NavDataManager";
-import DMRouter from "./router/DMRouter";
+import RootRouter from "./router/RootRouter";
 import MapSingleRouter from "./router/map/MapSingleRouter";
 import {
   ROOT_ROOTES_ITEMS,
@@ -14,7 +14,7 @@ import SingleHorisonRouter from "./router/horison/HorisonSingleRouter";
 import GridSingleRouter from "./router/grid/GridSingleRouter";
 import LibrarySingleRouter from "./router/library/LibrarySingleRouter";
 import WellSingleRouter from "./router/well/WellSingleRouter";
-import HeaderDataManager from "./components/header/HeaderDataManager";
+import RootHeaderRouter from "./router/RootHeaderRouter";
 
 // const SingleHorison = lazy(
 //   () => import("./pages/horison/single/SingleHorison")
@@ -44,7 +44,9 @@ const DataManager = () => {
   const { pathname } = useLocation();
 
   const component = useMemo<ReactNode | null>(() => {
-    for (const section of Object.values(SectionsNames)) {
+    const sections = Object.values(SectionsNames);
+
+    for (const section of sections) {
       const match = pathname.match(
         new RegExp(`${section}\\/(\\w)+?(\\/)?(\\w)*$`, "i")
       );
@@ -69,9 +71,15 @@ const DataManager = () => {
           direction="column"
         />
       </div>
-      <div style={{ flex: 1 }}>
-        <HeaderDataManager />
-        <Suspense fallback={null}>{component || <DMRouter />}</Suspense>
+      <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
+        <Suspense fallback={null}>
+          {component || (
+            <>
+              <RootHeaderRouter />
+              <RootRouter />
+            </>
+          )}
+        </Suspense>
       </div>
     </main>
   );

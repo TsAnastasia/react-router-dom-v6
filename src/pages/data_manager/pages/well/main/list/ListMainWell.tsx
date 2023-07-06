@@ -13,7 +13,7 @@ const ListMainWell: FC<{ itemsType: string }> = ({ itemsType }) => {
       {ITEMS.map((item) => (
         <li key={item.id}>
           <Link
-            to={`../../${SectionsNames.WELL}/${item.id}`}
+            to={`${SectionsNames.WELL}/${item.id}`}
           >{`${itemsType} ${item.name}`}</Link>
         </li>
       ))}

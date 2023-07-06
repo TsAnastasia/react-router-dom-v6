@@ -1,4 +1,6 @@
-import BreadСrumbsDataManager from "./breadСrumbs/BreadСrumbsDataManager";
+import { Suspense } from "react";
+import BreadСrumbsDataManager from "../breadСrumbs/BreadСrumbsDataManager";
+import { Outlet } from "react-router-dom";
 
 const HeaderDataManager = () => {
   return (
@@ -13,7 +15,9 @@ const HeaderDataManager = () => {
       }}
     >
       <BreadСrumbsDataManager />
-      <div>tools</div>
+      <Suspense fallback={null}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 };

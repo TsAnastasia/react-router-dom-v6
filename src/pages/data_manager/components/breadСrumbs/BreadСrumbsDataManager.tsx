@@ -5,7 +5,7 @@ import {
   RootRouters,
   RootRoutesType,
   SectionsNames,
-} from "../../../router/routes";
+} from "../../router/routes";
 
 interface ICrumbs {
   name: string;

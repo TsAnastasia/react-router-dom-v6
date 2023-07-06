@@ -17,6 +17,7 @@ const LibrarySingleRouter: FC<{ path: string }> = ({ path }) => {
               path={`${path}${SectionsNames.LIBRARY}/${LibrarySingleRoutes.SINGLE}`}
             >
               <Route index element={<p>library single tools</p>} />
+              <Route path="*" element={null} />
             </Route>
           </Route>
         </Routes>

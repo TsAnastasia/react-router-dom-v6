@@ -22,11 +22,7 @@ const BreadСrumbsDataManager = () => {
   }>(() => {
     const arr = pathname.slice(MFPath.length + 1).split("/");
 
-    const section = (
-      (Object.values(RootRouters) as string[]).includes(arr[0])
-        ? arr[0]
-        : arr[0] + "s"
-    ) as RootRoutesType;
+    const section = arr[0] as RootRoutesType;
 
     const crumbs: ICrumbs[] =
       (Object.values(SectionsNames) as string[]).includes(arr[0]) &&

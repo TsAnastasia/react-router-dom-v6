@@ -32,6 +32,7 @@ const GridSingleRouter: FC<{ path: string }> = ({ path }) => {
                 path={GridSingleRoutes.HORISON}
                 element={<p>grid horison tools</p>}
               />
+              <Route path="*" element={null} />
             </Route>
           </Route>
         </Routes>

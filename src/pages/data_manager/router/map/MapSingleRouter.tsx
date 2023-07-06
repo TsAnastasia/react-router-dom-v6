@@ -20,7 +20,7 @@ const MapSingleRouter: FC<{ path: string }> = ({ path }) => {
             <Route
               path={`${path}${SectionsNames.MAP}/${MapSingleRoutes.SINGLE}`}
             >
-              <Route path="" element={<p>map single tools</p>} />
+              <Route index element={<p>map single tools</p>} />
               <Route
                 path={MapSingleRoutes.GRID}
                 element={<p>map grid tools</p>}
@@ -45,6 +45,7 @@ const MapSingleRouter: FC<{ path: string }> = ({ path }) => {
                 path={MapSingleRoutes.POINT}
                 element={<p>map point tools</p>}
               />
+              <Route path="*" element={null} />
             </Route>
           </Route>
         </Routes>

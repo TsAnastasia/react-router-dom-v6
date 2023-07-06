@@ -31,6 +31,7 @@ const SingleHorisonRouter: FC<{ path: string }> = ({ path }) => {
                 path={HorisonSingleRoutes.SEISM}
                 element={<p>horison seism tools</p>}
               />
+              <Route path="*" element={null} />
             </Route>
           </Route>
         </Routes>

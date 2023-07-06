@@ -30,6 +30,7 @@ const SingleHorisonRouter: FC<{ path: string }> = ({ path }) => {
                 path={WellSingleRoutes.CHOPS}
                 element={<p>well gis tools</p>}
               />
+              <Route path="*" element={null} />
             </Route>
           </Route>
         </Routes>

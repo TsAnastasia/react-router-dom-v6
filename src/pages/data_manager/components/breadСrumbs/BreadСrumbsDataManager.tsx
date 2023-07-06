@@ -1,11 +1,25 @@
-import { useMemo } from "react";
+import { Fragment, useMemo } from "react";
 import { Link, useLocation, useResolvedPath } from "react-router-dom";
 import {
   NAMES_ROUTES,
-  RootRouters,
   RootRoutesType,
   SectionsNames,
+  SectionsNamesType,
 } from "../../router/routes";
+
+const NAMES: Record<SectionsNamesType, string> = {
+  seism: "Сейсмика",
+  well: "Скважина",
+  library: "Библиотека",
+  horison: "Горизонт",
+  grid: "Сетка",
+  map: "Карта",
+  polygon: "Полигон",
+  pulses: "Импульс",
+  "cross-raft": "Кросс-раф",
+  contour: "Контур",
+  gis: "Гис",
+};
 
 interface ICrumbs {
   name: string;
@@ -16,36 +30,70 @@ const BreadСrumbsDataManager = () => {
   const { pathname: MFPath } = useResolvedPath("");
   const { pathname } = useLocation();
 
-  const { crumbs, section } = useMemo<{
+  const { crumbs, error } = useMemo<{
     crumbs: ICrumbs[];
-    section: RootRoutesType;
+    error: boolean;
   }>(() => {
+    let error = false;
     const arr = pathname.slice(MFPath.length + 1).split("/");
 
-    const section = arr[0] as RootRoutesType;
+    const crumbs: ICrumbs[] = [];
 
-    const crumbs: ICrumbs[] =
-      (Object.values(SectionsNames) as string[]).includes(arr[0]) &&
-      arr.length > 1
-        ? [{ to: "", name: "test" }]
-        : [];
+    const getCrumbs = (arr: string[], path: string) => {
+      if (arr.length < 2) return;
 
-    console.log("arr", arr);
-    return { crumbs, section };
+      if (!(Object.values(SectionsNames) as string[]).includes(arr[0])) {
+        error = true;
+        return;
+      }
+
+      const newPath = path + "/" + arr.slice(1, 3).join("/");
+      crumbs.push({
+        name: NAMES[arr[0] as SectionsNamesType] + " " + arr[1],
+        to: newPath,
+      });
+
+      getCrumbs(arr.slice(2), newPath);
+    };
+
+    if ((Object.values(SectionsNames) as string[]).includes(arr[0])) {
+      crumbs.push({ name: NAMES_ROUTES[arr[0] as RootRoutesType], to: arr[0] });
+      getCrumbs(arr, arr[0]);
+    } else {
+      crumbs.push({
+        name: NAMES_ROUTES[arr[0] as RootRoutesType],
+        to: arr.slice(0, 2).join("/"),
+      });
+      getCrumbs(arr.slice(2), arr.slice(0, 2).join("/"));
+    }
+
+    return { crumbs, error };
   }, [MFPath.length, pathname]);
 
   return (
     <div style={{ display: "flex", flex: 1 }}>
-      {crumbs.length < 1 ? (
-        <p>
-          {NAMES_ROUTES[section]} {section}
-        </p>
+      {error ? (
+        <p>wrong path</p>
+      ) : crumbs.length <= 1 ? (
+        <p>{crumbs[0].name}</p>
       ) : (
-        <>
-          <Link to={MFPath + "/" + section} style={{ border: "1px solid" }}>
-            back
-          </Link>
-        </>
+        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          <Link to={crumbs[crumbs.length - 2].to}>back</Link>
+
+          <div style={{ display: "flex", alignItems: "center" }}>
+            {crumbs.map((crumb, index) => (
+              <Fragment key={index}>
+                {index === crumbs.length - 1 ? (
+                  <p style={{ fontWeight: 700 }}>{"/" + crumb.name}</p>
+                ) : (
+                  <Link to={crumb.to}>{`${index !== 0 ? "/" : ""}${
+                    crumb.name
+                  }`}</Link>
+                )}
+              </Fragment>
+            ))}
+          </div>
+        </div>
       )}
     </div>
   );

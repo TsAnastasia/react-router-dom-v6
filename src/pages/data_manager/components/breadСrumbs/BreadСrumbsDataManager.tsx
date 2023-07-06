@@ -1,4 +1,4 @@
-import { Fragment, useMemo } from "react";
+import { Fragment, useCallback, useMemo } from "react";
 import { Link, useLocation, useResolvedPath } from "react-router-dom";
 import {
   NAMES_ROUTES,
@@ -21,7 +21,7 @@ const NAMES: Record<SectionsNamesType, string> = {
   gis: "Гис",
 };
 
-interface ICrumbs {
+export interface ICrumbs {
   name: string;
   to: string;
 }
@@ -70,6 +70,29 @@ const BreadСrumbsDataManager = () => {
     return { crumbs, error };
   }, [MFPath.length, pathname]);
 
+  const handleCopyPath = useCallback(() => {
+    const arr = pathname.slice(MFPath.length + 1).split("/");
+    let path = "";
+
+    if (!(Object.values(SectionsNames) as string[]).includes(arr[0])) {
+      path = arr.slice(0, 2).join("/");
+    }
+
+    if (
+      (Object.values(SectionsNames) as string[]).includes(arr[arr.length - 1])
+    ) {
+      path += arr.slice(-3).join("/");
+    } else {
+      path += arr.slice(-2).join("/");
+    }
+
+    const copyPath = MFPath + "/" + path;
+
+    // копировать в буфер обмена
+    navigator.clipboard.writeText(copyPath);
+    console.log("copyPath", copyPath);
+  }, [MFPath, pathname]);
+
   return (
     <div style={{ display: "flex", flex: 1 }}>
       {error ? (
@@ -80,7 +103,14 @@ const BreadСrumbsDataManager = () => {
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
           <Link to={crumbs[crumbs.length - 2].to}>back</Link>
 
-          <div style={{ display: "flex", alignItems: "center" }}>
+          <div
+            className="crumbs"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              flex: 1,
+            }}
+          >
             {crumbs.map((crumb, index) => (
               <Fragment key={index}>
                 {index === crumbs.length - 1 ? (
@@ -93,6 +123,10 @@ const BreadСrumbsDataManager = () => {
               </Fragment>
             ))}
           </div>
+
+          <button type="button" onClick={handleCopyPath}>
+            copy path
+          </button>
         </div>
       )}
     </div>

@@ -8,6 +8,10 @@ body {
   font-family: "Arial", Helvetica, sans-serif;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 .app {
   margin: 0 auto;
   max-width: 900px;
@@ -73,4 +77,10 @@ footer {
   padding: 1rem;
   background-color: var(--color-bg);
   color: white;
+}
+
+.crumbs > * {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
